@@ -121,7 +121,6 @@ class ProductProvider extends ChangeNotifier {
     required String description,
     required String githubUrl,
   }) async {
-    if (_hasSubmitted) return null;
 
     _errorMessage = null;
     _isSubmitting = true;

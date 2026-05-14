@@ -88,7 +88,7 @@ class _SubmitScreenState extends State<SubmitScreen>
             ),
             const SizedBox(height: 12),
             Text(
-              '⚠️ Aksi ini TIDAK DAPAT diulang.',
+              '⚠️ Pastikan URL Repository Benar.',
               style: GoogleFonts.inter(
                 color: kColorError,
                 fontSize: 13,
@@ -221,7 +221,7 @@ class _SubmitScreenState extends State<SubmitScreen>
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        'Submission hanya dapat dilakukan sekali. Kamu tidak perlu submit ulang.',
+                        'Kamu telah berhasil melakukan submit produk',
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           color: Colors.white60,
@@ -230,31 +230,6 @@ class _SubmitScreenState extends State<SubmitScreen>
                       ),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: () => Navigator.pop(context),
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.white24),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                  ),
-                  icon: const Icon(
-                    Icons.arrow_back_rounded,
-                    color: Colors.white70,
-                  ),
-                  label: Text(
-                    'Kembali ke Daftar Produk',
-                    style: GoogleFonts.inter(
-                      color: Colors.white70,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -334,7 +309,9 @@ class _SubmitScreenState extends State<SubmitScreen>
                     label: 'Nama Produk',
                     icon: Icons.inventory_2_outlined,
                   ),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Nama wajib diisi' : null,
+                  validator: (v) => (v == null || v.trim().isEmpty)
+                      ? 'Nama wajib diisi'
+                      : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
@@ -345,7 +322,9 @@ class _SubmitScreenState extends State<SubmitScreen>
                     label: 'Harga',
                     icon: Icons.attach_money_rounded,
                   ),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Harga wajib diisi' : null,
+                  validator: (v) => (v == null || v.trim().isEmpty)
+                      ? 'Harga wajib diisi'
+                      : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
@@ -356,7 +335,9 @@ class _SubmitScreenState extends State<SubmitScreen>
                     label: 'Deskripsi',
                     icon: Icons.description_outlined,
                   ),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Deskripsi wajib diisi' : null,
+                  validator: (v) => (v == null || v.trim().isEmpty)
+                      ? 'Deskripsi wajib diisi'
+                      : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
@@ -432,9 +413,7 @@ class _SubmitScreenState extends State<SubmitScreen>
             width: double.infinity,
             height: 52,
             child: ElevatedButton.icon(
-              onPressed: (products.isSubmitting || products.hasSubmitted)
-                  ? null
-                  : _submit,
+              onPressed: products.isSubmitting ? null : _submit,
               style: ElevatedButton.styleFrom(
                 backgroundColor: kColorPrimary,
                 shape: RoundedRectangleBorder(
@@ -452,7 +431,7 @@ class _SubmitScreenState extends State<SubmitScreen>
                     )
                   : const Icon(Icons.send_rounded, color: Colors.white),
               label: Text(
-                'Submit Final',
+                products.hasSubmitted ? 'Submit Ulang' : 'Submit Final',
                 style: GoogleFonts.inter(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -461,16 +440,6 @@ class _SubmitScreenState extends State<SubmitScreen>
               ),
             ),
           ),
-
-          if (products.hasSubmitted) ...[
-            const SizedBox(height: 12),
-            Center(
-              child: Text(
-                'Kamu sudah melakukan submission.',
-                style: GoogleFonts.inter(fontSize: 12, color: Colors.white38),
-              ),
-            ),
-          ],
           const SizedBox(height: 24),
         ],
       ),

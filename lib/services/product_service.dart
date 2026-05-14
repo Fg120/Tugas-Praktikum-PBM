@@ -76,7 +76,7 @@ class ProductService {
     required String githubUrl,
   }) async {
     final data = await ApiService.post(
-      '/submit',
+      '/products/submit',
       token: token,
       body: {
         'name': name,
